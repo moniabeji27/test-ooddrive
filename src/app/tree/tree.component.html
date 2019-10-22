@@ -1,0 +1,15 @@
+<ul *ngIf="items && items.length > 0">
+    <ng-container *ngFor="let item of items">
+        <li (click)="getChildren(item.id)"> <i [ngClass]="{'fa fa-folder':item.folder,  'fa fa-file':!item.folder}"></i> {{item.name}}</li>
+        <ng-container *ngIf="item.items && item.items.length > 0">
+            <span class="ml-1"></span>
+            <ul>
+                <ng-container>
+                    <li>
+                        <fl-tree [items]="item.items" (itemClick)="onItemClick($event)"></fl-tree>
+                    </li>
+                </ng-container>
+            </ul>
+        </ng-container>
+    </ng-container>
+</ul>
